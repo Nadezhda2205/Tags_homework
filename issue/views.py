@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView
 from typing import Any
 from issue.forms import TaskForm
-from issue.models import Task
+from issue.models import Tag, Task
 
 
 class TaskListView(TemplateView):
@@ -76,3 +76,12 @@ class TaskDeleteView(TemplateView):
         task = get_object_or_404(Task, pk=kwargs['pk'])
         task.delete()       
         return redirect('task_list')
+
+
+class TagDetailView(TemplateView):
+    template_name: str = 'tag_detail.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['tag'] = get_object_or_404(Tag, slug=kwargs['slug'])
+        return context

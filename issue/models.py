@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Status(models.Model):
@@ -18,9 +19,14 @@ class Type(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(verbose_name='Название', max_length=50, null=False)
+    slug = models.CharField(verbose_name='Слаг', max_length=50, null=False)
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("tag_detail", kwargs={"slug": self.slug})
+    
 
 
 class Task(models.Model):

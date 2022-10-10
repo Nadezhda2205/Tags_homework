@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ tag.name }}
+{% endblock %}
+
+
+{% block content %}
+
+    {% for task in tag.tasks.all %}
+
+        {% include 'includes/include_task.html' %}
+
+    {% endfor %}
+
+{% endblock %}
+

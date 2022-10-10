@@ -19,4 +19,4 @@ class TaskForm(ModelForm):
     
     class Meta:
         model = Task
-        fields = ['summary', 'description',  'status',  'type']
+        fields = ['summary', 'description',  'status',  'type', 'tags']

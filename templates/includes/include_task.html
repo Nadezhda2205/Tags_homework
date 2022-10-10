@@ -1,0 +1,25 @@
+<div class="shadow-lg p-3 mb-5 bg-body rounded-3">
+    <h5>Заголовок:</h5>
+    <a href="{% url 'task_detail' task.pk %}">
+        <p>{{ task.summary }}</p>
+    </a>
+
+    <h5>Описание:</h5>
+    <p>{{ task.description }}</p>
+
+    <h5>Статус:</h5>
+    <p>{{task.status}}</p>
+
+    <h5>Тип:</h5>
+    <p>{{task.type}}</p>
+    
+    <h5>Тэг:</h5>
+
+    {% for tag in task.tags.all %}
+        <a href="{{ tag.get_absolute_url }}">{{tag.name}}</a>
+    {% endfor %}
+
+    <p><a class="btn btn-secondary btn-lg mt-3" href="{% url 'task_update' task.pk  %}">Редактировать</a>
+    <a class="btn btn-secondary btn-lg mt-3" href="{% url 'task_delete' task.pk  %}">Удалить</a></p>
+
+</div>    
