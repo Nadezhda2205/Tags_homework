@@ -4,10 +4,11 @@ from typing import Any
 from issue.forms import TaskForm
 from issue.models import Tag, Task
 
-
+#отображение списка задач
 class TaskListView(TemplateView):
     template_name: str = 'task_list.html'
-
+#через супер получаем весь контекст
+#далее добавляем в контекст наши задачи
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['tasks'] = Task.objects.all()
